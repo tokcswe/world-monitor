@@ -33,10 +33,12 @@
     }
     state.map = L.map('map', { worldCopyJump: true, zoomControl: false, minZoom: 2 }).setView([16, 0], 2);
     L.control.zoom({ position: 'bottomright' }).addTo(state.map);
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 18, subdomains: 'abcd',
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
+    const baseLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(state.map);
+    baseLayer.getContainer().style.filter =
+      'grayscale(1) invert(1) hue-rotate(180deg) brightness(.75) contrast(1.1)';
     state.markers = L.layerGroup().addTo(state.map);
   }
   function createPopup(event) {

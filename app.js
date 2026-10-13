@@ -33,7 +33,7 @@
     }
     state.map = L.map('map', { worldCopyJump: true, zoomControl: false, minZoom: 2 }).setView([16, 0], 2);
     L.control.zoom({ position: 'bottomright' }).addTo(state.map);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 18, subdomains: 'abcd',
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
     }).addTo(state.map);

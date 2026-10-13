@@ -33,13 +33,15 @@
     }
     state.map = L.map('map', { worldCopyJump: true, zoomControl: false, minZoom: 2 }).setView([16, 0], 2);
     L.control.zoom({ position: 'bottomright' }).addTo(state.map);
-    const baseLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(state.map);
-    baseLayer.getContainer().style.filter =
-      'grayscale(1) invert(1) hue-rotate(180deg) brightness(.75) contrast(1.1)';
-    state.markers = L.layerGroup().addTo(state.map);
+    const baseLayer = L.maplibreGL({
+    style: 'https://tiles.openfreemap.org/styles/dark'
+      }).addTo(state.map);
+
+    state.map.attributionControl.addAttribution(
+    '<a href="https://openfreemap.org/">OpenFreeMap</a> | ' +
+    '<a href="https://openmaptiles.org/">OpenMapTiles</a> | ' +
+    '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+);
   }
   function createPopup(event) {
     const wrap = document.createElement('div');
